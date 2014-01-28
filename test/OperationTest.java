@@ -33,6 +33,13 @@ public class OperationTest {
         assertEquals(2d,result);
     }
 
+    @Test
+    public void testPowerOfOperation() throws Exception {
+        PowerOfOperation po = new PowerOfOperation();
+        double result = po.operate(new Expression(2d),new Expression(3d));
+        assertEquals(8d,result);
+    }
+
     @Test(expected = NullPointerException.class)
     public void testShouldThroughExceptionWhenDivideByZero() throws Exception {
         DivisionOperation div = new DivisionOperation();
