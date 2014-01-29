@@ -1,11 +1,9 @@
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.shitalma.*;
 
 import static junit.framework.Assert.assertEquals;
 
 public class ExpressionTest {
-    @BeforeClass
     public static Expression e(double n) {
         return new Expression(n);
     }
@@ -59,5 +57,13 @@ public class ExpressionTest {
         Expression multiplication = e(e(additionOf3and2.evaluate()),e(4),mul());
         Expression finalResult = e(e(multiplication.evaluate()),(e(e(3),e(2),mul())),add());
         assertEquals(26d, finalResult.evaluate());
+    }
+
+    @Test
+    public void testPerformATreeOfExpression1() throws Exception {
+        Expression additionOf3and5 = e(e(3), e(5), add());
+        Expression multiplication = e(e(additionOf3and5.evaluate()),e(4),mul());
+        Expression finalResult = e(e(multiplication.evaluate()),(e(e(-20),e(30),mul())),add());
+        assertEquals(-568d, finalResult.evaluate());
     }
 }
